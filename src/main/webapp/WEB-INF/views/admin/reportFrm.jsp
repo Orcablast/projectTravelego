@@ -39,8 +39,9 @@ table.table2 {
 }
 
 table.table2 tr {
-	width: 10px;
+	width: 100px;
 	padding: 10px;
+	height: 20px;
 	font-weight: bold;
 	font-size: 15px;
 	vertical-align: top;
@@ -48,94 +49,14 @@ table.table2 tr {
 }
 
 table.table2 td {
-	width: 100px;
+	
 	padding: 10px;
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
 }
+
 </style>
-	
-	<section>
-		<form method="post" action="/insertReport.do" class="submit">
-			<table style="padding-top: 50px" align=center width=1000; border=0
-				;cellpadding=2>
-				<tr style="text-align:center;">
-					<h3>신고하기</h3>
-				<tr>
-				<tr>
-					<td bgcolor=white>
-						<table class="table2">
-							<tr>
-								<td>신고 게시판</td>
-								
-									
-								<c:if test="${r.boardClass eq 1 }">
-									<td>내 여행
-										<input type="hidden" name="boardClass" size=20 
-									value="1">
-									</td>
-								</c:if>
-								<c:if test="${r.boardClass eq 2 }">
-									<td>추천게시판
-									<input type="hidden" name="boardClass" size=20 
-									value="2">
-									</td>
-								</c:if>
-								<c:if test="${r.boardClass eq 3 }">
-									<td>동행구하기
-									<input type="hidden" name="boardClass" size=20 
-									value="3">
-									</td>
-								</c:if>
-								<c:if test="${r.boardClass eq 4 }">
-									<td>투어티켓
-									<input type="hidden" name="boardClass" size=20 
-									value="4">
-									</td>
-								</c:if>
-								<c:if test="${r.boardClass eq 5 }">
-									<td>일정 게시판
-									<input type="hidden" name="boardClass" size=20 
-									value="5">
-									</td>
-								</c:if>
-									
-									
-									<!-- 네임값이 컨트롤러 메소드로 들어감 -->
-									
-							</tr>
-							<tr>
-								<td>피신고자</td>
-								<td><input type=text name="reportedMember" size=20
-									readonly value="${r.reportedMember }"> 
-									<input type="hidden" name="reportWriter" value="${sessionScope.member.memberId }">
-									<input type="hidden" name="boardNo" value="${r.boardNo }">
-								</td>
-							</tr>
-
-
-							<tr>
-								<td>신고 제목</td>
-								<td><input type="text" name="reportCategory" size=60 class="reportTitle" onkeyup="chkword(this,20)" placeholder="제목을 입력하세요 20자 미만"></td>
-							</tr>
-
-							<tr>
-								<td>사유</td>
-								<td><textarea name="reportContent" cols=85 rows=15 class="reportContent" 
-										placeholder="사유를 입력하세요 100자 이상~600자 미만" onkeyup="chkContent(this,620)"></textarea></td>
-							</tr>
-
-
-						</table>
-
-						<center>
-							<input type="submit" value="작성" style="width: 100px;">
-						</center>
-					</td>
-				</tr>
-			</table>
-		</form>
-<script>
+	<script>
 	var checkArr = [ false, false];
 		
 		function chkword(obj, maxByte) {
@@ -223,8 +144,112 @@ table.table2 td {
 
 		});
 		
+	$(function() {
 		
+		$(".selectBox").click(function() {
+			var sbc=$(this).val();
+			if(sbc=="기타"){
+				$("#etcOption").show();
+			}else{
+				$("#etcOption").hide();
+			}
+		})
+	
+	})
 	</script>
+	
+	<section>
+		<form method="post" action="/insertReport.do" class="submit">
+			<table style="padding-top: 50px" align=center width=1000; border=0
+				;cellpadding=2>
+				<tr style="text-align:center;">
+					<div style="padding-left:40% ;">
+					<h3 style="color:red;">신고하기</h3>
+					</div>
+				<tr>
+				<tr>
+					<td bgcolor=white>
+						<table class="table2">
+							<tr>
+								<td>신고 게시판</td>
+								
+									<td style="color:orange;">
+								<c:if test="${r.boardClass eq 1 }">
+									내 여행
+										<input type="hidden" name="boardClass" size=20 
+									value="1">
+								</c:if>
+								<c:if test="${r.boardClass eq 2 }">
+									추천게시판
+									<input type="hidden" name="boardClass" size=20 
+									value="2">
+									
+								</c:if>
+								<c:if test="${r.boardClass eq 3 }">
+									동행구하기
+									<input type="hidden" name="boardClass" size=20 
+									value="3">
+									
+								</c:if>
+								<c:if test="${r.boardClass eq 4 }">
+									투어티켓
+									<input type="hidden" name="boardClass" size=20 
+									value="4">
+									
+								</c:if>
+								<c:if test="${r.boardClass eq 5 }">
+									일정 게시판
+									<input type="hidden" name="boardClass" size=20 
+									value="5">
+									
+								</c:if>
+									</td>
+									
+									<!-- 네임값이 컨트롤러 메소드로 들어감 -->
+									
+							</tr>
+							<tr>
+								<td>신고할 아이디</td>
+								<td><input type=text name="reportedMember" size=20
+									readonly value="${r.reportedMember }"> 
+									<input type="hidden" name="reportWriter" value="${sessionScope.member.memberId }">
+									<input type="hidden" name="boardNo" value="${r.boardNo }">
+								</td>
+							</tr>
+
+
+							<tr>
+								<td>신고 제목</td>
+								<td>
+								<select name="reportCategory" style="height:30px;" class="selectBox">
+								<option value="취지에 맞지 않습니다">취지에 맞지 않습니다.</option>
+								<option value="선정적입니다.">선정적 입니다.</option>
+								<option value="폭력적입니다.">폭력적 입니다.</option>
+								<option value="작성자가 연락이 안됩니다.">작성자가 연락이 안됩니다.</option>
+								<option value="기타">기타</option>
+								</select>
+								<br>
+								<input type="text" name="reportCategory" size=60 class="reportTitle" id="etcOption" onkeyup="chkword(this,20)" placeholder="제목을 입력하세요 20자 미만" style="display:none;margin-top:15px;">
+								</td>
+							</tr>
+
+							<tr>
+								<td>사유</td>
+								<td><textarea name="reportContent" cols=85 rows=15 class="reportContent"  
+										placeholder="사유를 입력하세요 100자 이상~600자 미만" onkeyup="chkContent(this,620)"></textarea></td>
+							</tr>
+
+
+						</table>
+
+						<div style="padding-left:35%">
+							<input type="submit" value="작성" style="width: 100px;">
+							<input type="reset" value="취소" style="width: 100px;">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
 
 	</section>
 
@@ -255,7 +280,7 @@ table.table2 td {
 	<script src="/src/js/header/scrollIt.js"></script>
 	<script src="/src/js/header/jquery.scrollUp.min.js"></script>
 	<script src="/src/js/header/wow.min.js"></script>
-	<script src="/src/js/header/nice-select.min.js"></script>
+<!-- 	<script src="/src/js/header/nice-select.min.js"></script> -->
 	<script src="/src/js/header/jquery.slicknav.min.js"></script>
 	<script src="/src/js/header/jquery.magnific-popup.min.js"></script>
 	<script src="/src/js/header/plugins.js"></script>
