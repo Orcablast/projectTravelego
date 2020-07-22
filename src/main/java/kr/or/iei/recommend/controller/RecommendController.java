@@ -325,10 +325,9 @@ public class RecommendController {
 	public String updateRec(int recNo, Recommend rec, HttpServletRequest req) {
 		//rec = service.selectOneRec(rec.getRecNo());
 		String p = req.getParameter("photo");
-		System.out.println(rec.getRecTitle() + rec.getCoords() + rec.getRecCategory());
-		System.out.println(rec.getRecContent());
+		System.out.println();
 		int result = service.updateRec(rec,p);
-		System.out.println(result);
+		System.out.println(p);
 		return "redirect:/recommendList.do?reqPage=1";
 		
 	}
