@@ -245,9 +245,6 @@ main .admin_sidebar {
 			function reportContent(obj) {
 				var content = $(obj).prev(".reportContent").val();
 				$(".modalcontent").html(content);
-				var reportedMem = $(obj).parent().parent().find(".reportedMem").text();
-				console.log(reportedMem);
-				$(".modalReported").text(reportedMem);
 			
 			}
 			
@@ -255,9 +252,11 @@ main .admin_sidebar {
 				console.log(boardNo,boardClass)
 				if(boardClass==2){
 					location.href="/recDetail.do?reqPage=1&recNo="+boardNo
-				}if(boardClass==3){
-					location.href="'/together/singleView.do?boardNo="+boardNo
-				}if(boardClass==5){
+ 				}if(boardClass==3){
+					//동행-도형
+					location.href="/together/singleView.do?boardNo="+boardNo
+		}
+		if(boardClass==5){
 					location.href="/tripboard/view.do?tripBoardNo="+boardNo
 				}
 				
@@ -300,7 +299,7 @@ main .admin_sidebar {
 						<thead>
 							<tr>
 								<th>신고번호</th>
-								<th>신고분류</th>
+								<th>신고제목</th>
 								<th>신고내용</th>
 								<th>출처</th>
 								<th>게시글 번호</th>
@@ -409,7 +408,6 @@ main .admin_sidebar {
 				</div>
 				<div class="modal-body">
 					<div class="modalcontent"></div>
-					<div class="modalReported"></div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
