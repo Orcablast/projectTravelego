@@ -179,7 +179,7 @@ public class AdminController {
 		int result = service.qnaAnswer(q);
 		if (result > 0) {
 			session.setAttribute("q", q);
-			return "admin/qnaAdminView";
+			return "admin/adminQnaList";
 		} else {
 			session.setAttribute("msg", "답변 오류. 관리자와 상의하세요.");
 			System.out.println("질문날짜 : " + q.getAskDate());

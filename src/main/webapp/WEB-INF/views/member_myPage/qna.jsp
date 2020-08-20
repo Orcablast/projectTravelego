@@ -65,7 +65,7 @@ prefix="c"%>
 
     <!-- 웹 콘텐츠는 section 태그 안에 작성을 해주세요!-->
     <section>
-      <div id="user" style="width:80%; margin:0 auto; font-size:30px; font-weight: bold; margin-bottom:20px;">${sessionScope.member.memberNickname }</div>
+      <div id="user" style="width:80%; margin:0 auto; font-size:30px; font-weight: bold; margin-bottom:20px;">${sessionScope.member.memberNickname }님</div>
         <br>
         <div style="width:80%; margin:0 auto; font-size:18px;">1:1 문의</div>
         <br>

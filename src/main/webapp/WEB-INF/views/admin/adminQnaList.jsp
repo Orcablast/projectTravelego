@@ -157,7 +157,7 @@ main .admin_sidebar {
 		<!-- 1.문의글 보여줄 것
 		  	 2.보여줄때 답변이 있으면-답변완료 뜨게하기 QA값이 있으면 답변 완료 
 		  	 3.답변하기 할때 insert 가 아니라 update
-		  	 4.페이징 처리--오전안에 끝내기-->
+		  	 f-->
 		<div name="qnaContainer">
 			<form role="form" method="get">
 
